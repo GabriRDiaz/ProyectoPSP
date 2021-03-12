@@ -65,6 +65,8 @@ public class LoginController extends HttpServlet {
 System.out.println("Entra");
         } else {
                 HttpSession session = request.getSession();
+                request.setAttribute("isIncorrect", true);
+                request.getRequestDispatcher("./index.jsp").forward(request, response);
                 //session.setAttribute("user", username);
                 //response.sendRedirect("login.jsp");
         }

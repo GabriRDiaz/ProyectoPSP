@@ -12,7 +12,6 @@ package pojo;
 public class Login {
     private String mail;
     private String pwd;
-
     public Login(String mail, String pwd) {
         this.mail = mail;
         this.pwd = pwd;
@@ -33,6 +32,5 @@ public class Login {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
-    
     
 }
