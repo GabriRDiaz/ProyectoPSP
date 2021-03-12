@@ -11,7 +11,9 @@
     <!--Fontawesome 5.3.1-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!--Sweet Alert-->
 
+        
     <link rel="stylesheet" type="text/css" href="./index.css">
 </head>
 
@@ -28,14 +30,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text dark"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Mail" name="mail">
+                            <input type="text" class="form-control" placeholder="Mail" name="mail" required>
 
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend dark">
                                 <span class="input-group-text dark"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="Password" name="pwd">
+                            <input type="password" class="form-control" placeholder="Password" name="pwd" required>
                         </div>
                         <div class="form-group text-center">
                             <input type="submit" value="Login" class="btn btn-dark">

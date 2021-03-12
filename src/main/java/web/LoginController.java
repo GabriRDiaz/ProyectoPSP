@@ -5,6 +5,7 @@
  */
 package web;
 
+import database.LoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+import pojo.Login;
 
 /**
  *
@@ -48,11 +53,35 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
        String mail = request.getParameter("mail");
        String pwd = request.getParameter("pwd");
-       checkFields(mail,pwd);
+       if(!sanitizeFields(mail,pwd)){
+           request.getRequestDispatcher("./index.jsp").forward(request, response);
+       }
+       LoginDAO login = new LoginDAO(new Login(mail,pwd));
+       try {
+        if (login.validate()) {
+                //HttpSession session = request.getSession();
+                // session.setAttribute("username",username);
+//                response.sendRedirect("loginsuccess.jsp");
+System.out.println("Entra");
+        } else {
+                HttpSession session = request.getSession();
+                //session.setAttribute("user", username);
+                //response.sendRedirect("login.jsp");
+        }
+    } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+    }
     }
 
-        private void checkFields(String mail, String pwd) {
-        
+        private boolean sanitizeFields(String mail, String pwd) {
+        if(!mail.equals("") || !pwd.equals("")){
+            if(mail.contains("@") && mail.contains(".")){
+                mail = Jsoup.clean(mail, Whitelist.basic());
+                pwd = Jsoup.clean(pwd, Whitelist.basic());
+                return true;
+            }
+        }
+        return false;
     }
     
     
