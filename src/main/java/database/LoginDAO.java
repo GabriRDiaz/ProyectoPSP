@@ -19,9 +19,7 @@ import pojo.Login;
  * @author Gabriel
  */
 public class LoginDAO {
-    private final String URL="jdbc:mysql://localhost:3306/psp_games?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Madrid";
-    private final String USER="root";
-    private final String PWD="abc123.";
+   
     private final String LOGIN_QUERY="SELECT * FROM usr WHERE mail = ? AND pwd = ? ";
     private Login login;
     public LoginDAO(Login login){
@@ -32,9 +30,7 @@ public class LoginDAO {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
-		try (Connection connection = DriverManager.getConnection(URL, USER, PWD);
-
-				
+		try (Connection connection = DriverManager.getConnection(ConnectionGet.URL, ConnectionGet.USER, ConnectionGet.PWD);
                         PreparedStatement preparedStatement = connection.prepareStatement(LOGIN_QUERY)) {
 			preparedStatement.setString(1, login.getMail());
 			preparedStatement.setString(2, login.getPwd());

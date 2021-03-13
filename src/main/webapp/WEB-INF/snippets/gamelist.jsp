@@ -1,23 +1,12 @@
 <div class="mainContainer">
     <br>
     <div class="displayRow">
+        <c:forEach var="games" items="${game}" varStatus="status"> 
         <span class="alignedItems">
-            <img src="TheBlackMarket.jpg" height="200" width="200">
-            <button type="button" class="btn btn-dark marginButton">The Black Market</button>
+            <img src="${game.getImg()}" height="200" width="200">
+            <button type="button" class="btn btn-dark marginButton">${game.getTitle()}</button>
         </span>
-        <span class="alignedItems">
-            <img src="Baile.jpg" height="200" width="200">
-            <button type="button" class="btn btn-dark marginButton">El Baile de los Caídos</button>
-        </span>
-        <span class="alignedItems">
-            <img src="W&D.jpg" height="200" width="200">
-            <button type="button" class="btn btn-dark marginButton">Wretched And Divine</button>
-        </span>
-        <span class="alignedItems">
-            <img src="Masquerade.jpg" height="200" width="200">
-            <button type="button" class="btn btn-dark marginButton">Welcome to the Masquerade</button>
-        </span>
-    </div>
+        </c:foreach>
 <!--    <div class="displayRow"><Button type="button" class="btn btn-warning marginButton"
                 onsubmit="ServletSC">Submit</Button></div>-->
 </div>
