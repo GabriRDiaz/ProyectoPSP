@@ -14,7 +14,6 @@
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!--Sweet Alert-->
 
-        
     <link rel="stylesheet" type="text/css" href="./index.css">
 </head>
 
@@ -44,9 +43,6 @@
                             <input type="submit" value="Login" class="btn btn-dark">
                         </div>
                     </form>
-                        <div class="alert alert-dark" role="alert" name="incorrect" style= "display: none;">
-                                User or password incorrect!
-                        </div>
                         <c:choose>
                             <c:when test="${isIncorrect}">
                             <div class="alert alert-dark" role="alert" name="incorrect" style= "display: flex;">

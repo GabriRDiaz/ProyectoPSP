@@ -53,16 +53,21 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
        String mail = request.getParameter("mail");
        String pwd = request.getParameter("pwd");
-       if(!sanitizeFields(mail,pwd)){
-           request.getRequestDispatcher("./index.jsp").forward(request, response);
-       }
+//       if(!sanitizeFields(mail,pwd)){
+//           request.getRequestDispatcher("./index.jsp").forward(request, response);
+//            HttpSession session = request.getSession();
+//                request.setAttribute("isIncorrect", true);
+//                request.getRequestDispatcher("./index.jsp").forward(request, response);
+//       }
        LoginDAO login = new LoginDAO(new Login(mail,pwd));
        try {
         if (login.validate()) {
                 //HttpSession session = request.getSession();
                 // session.setAttribute("username",username);
 //                response.sendRedirect("loginsuccess.jsp");
-System.out.println("Entra");
+                System.out.println("Entra");
+                request.setAttribute("isIncorrect", false);
+                request.getRequestDispatcher("./games.jsp").forward(request, response);
         } else {
                 HttpSession session = request.getSession();
                 request.setAttribute("isIncorrect", true);

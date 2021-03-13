@@ -19,7 +19,7 @@ import pojo.Login;
  * @author Gabriel
  */
 public class LoginDAO {
-    private final String URL="jdbc:mysql://localhost:3306/psp_games?useSSL=false";
+    private final String URL="jdbc:mysql://localhost:3306/psp_games?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Madrid";
     private final String USER="root";
     private final String PWD="abc123.";
     private final String LOGIN_QUERY="SELECT * FROM usr WHERE mail = ? AND pwd = ? ";
@@ -30,7 +30,7 @@ public class LoginDAO {
     public boolean validate() throws ClassNotFoundException {
 		boolean status = false;
 
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		try (Connection connection = DriverManager.getConnection(URL, USER, PWD);
 
@@ -38,12 +38,16 @@ public class LoginDAO {
                         PreparedStatement preparedStatement = connection.prepareStatement(LOGIN_QUERY)) {
 			preparedStatement.setString(1, login.getMail());
 			preparedStatement.setString(2, login.getPwd());
-
+                           System.out.println(login.getMail());
+                           System.out.println(login.getPwd());
 			System.out.println(preparedStatement);
 			ResultSet rs = preparedStatement.executeQuery();
 			status = rs.next();
+                        System.out.println(status);
 
-		} catch (SQLException e) {System.out.println("SQL Error");}
+		} catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("SQL Error");}
 		return status;
 	}
 

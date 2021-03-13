@@ -1,0 +1,29 @@
+.mainContainer{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  .displayRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .alignedItems{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .centeredTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    color: whitesmoke;
+  }
+  
+  .marginButton{
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
