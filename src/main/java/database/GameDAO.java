@@ -19,7 +19,7 @@ import pojo.Game;
  * @author Gabriel
  */
 public class GameDAO {
-    private final String GAME_QUERY="SELECT * FROM game";
+    private final String GAME_QUERY="SELECT * FROM games";
 
     public GameDAO(){}
     

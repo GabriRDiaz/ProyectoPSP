@@ -65,9 +65,10 @@ public class LoginController extends HttpServlet {
                 //HttpSession session = request.getSession();
                 // session.setAttribute("username",username);
 //                response.sendRedirect("loginsuccess.jsp");
-                System.out.println("Entra");
+                System.out.println("Entra 5");
                 request.setAttribute("isIncorrect", false);
-                request.getRequestDispatcher("./games.jsp").forward(request, response);
+//                request.getRequestDispatcher("./games.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/GamesController");
         } else {
                 HttpSession session = request.getSession();
                 request.setAttribute("isIncorrect", true);

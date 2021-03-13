@@ -65,13 +65,14 @@ public class GamesController extends HttpServlet {
     }
     
     private void loadMainScreen(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession sesion = request.getSession();
+        HttpSession session = request.getSession();
         getGames().forEach(g->{
             System.out.println(g.getTitle());
         });
-        sesion.setAttribute("games", getGames());
+        session.setAttribute("games", getGames());
         response.sendRedirect("games.jsp");
-    }
+
+   }
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -83,7 +84,7 @@ public class GamesController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        loadMainScreen(request, response);
     }
 
     /**
