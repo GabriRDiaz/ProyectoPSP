@@ -30,14 +30,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text dark"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Mail" name="mail" required>
+                            <input type="text" class="form-control" placeholder="Mail" name="mail" value="admin@mail.com" required>
 
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend dark">
                                 <span class="input-group-text dark"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="Password" name="pwd" required>
+                            <input type="password" class="form-control" placeholder="Password" value="abc123." name="pwd" required>
                         </div>
                         <div class="form-group text-center">
                             <input type="submit" value="Login" class="btn btn-dark">

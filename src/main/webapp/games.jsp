@@ -16,29 +16,7 @@
     <div class="centeredTitle bg-dark">
         <h1>Games List</h1>
     </div>
-    <div class="mainContainer">
-        <br>
-        <div class="displayRow">
-            <span class="alignedItems">
-                <img src="TheBlackMarket.jpg" height="200" width="200">
-                <button type="button" class="btn btn-dark marginButton">The Black Market</button>
-            </span>
-            <span class="alignedItems">
-                <img src="Baile.jpg" height="200" width="200">
-                <button type="button" class="btn btn-dark marginButton">El Baile de los Caídos</button>
-            </span>
-            <span class="alignedItems">
-                <img src="W&D.jpg" height="200" width="200">
-                <button type="button" class="btn btn-dark marginButton">Wretched And Divine</button>
-            </span>
-            <span class="alignedItems">
-                <img src="Masquerade.jpg" height="200" width="200">
-                <button type="button" class="btn btn-dark marginButton">Welcome to the Masquerade</button>
-            </span>
-        </div>
-        <div class="displayRow"><Button type="button" class="btn btn-warning marginButton"
-                onsubmit="ServletSC">Submit</Button></div>
-    </div>
+    <jsp:include page="WEB-INF/snippets/gamelist.jsp"></jsp:include>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
