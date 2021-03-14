@@ -5,9 +5,9 @@
  */
 package web;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import database.GameDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,16 +42,17 @@ public class GamesController extends HttpServlet {
             switch(accion){
 		case "edit":
                     System.out.println("Editar");
-//                    this.editarCliente(request, response);
 		    break;
                 case "delete":
-                    System.out.println("Borrar");
-//                    this.eliminarCliente(request, response);
-		    break;    
+                    System.out.println("Borrar");                    
+		    break;
+                case "view":
+                    loadGameInfo(request, response);
+                    System.out.println("View");
+                    break;
                 default: 
                     loadMainScreen(request, response);
                     System.out.println("Working");
-//                    this.accionDefault(request,response);
 	    }			
         }else{
             loadMainScreen(request,response);
@@ -63,7 +64,13 @@ public class GamesController extends HttpServlet {
        GameDAO gdao = new GameDAO();
        return gdao.getGames();
     }
-    
+    private Game getGameWithId(HttpServletRequest request, HttpServletResponse response){
+        GameDAO gdao = new GameDAO();
+        return gdao.getGameWithId(Integer.parseInt(request.getParameter("gameId")));
+    }
+    private void loadGameInfo(HttpServletRequest request, HttpServletResponse response){
+        System.out.println(getGameWithId(request,response).getTitle());
+    }
     private void loadMainScreen(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         getGames().forEach(g->{

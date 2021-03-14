@@ -20,7 +20,7 @@ import pojo.Game;
  */
 public class GameDAO {
     private final String GAME_QUERY="SELECT * FROM games";
-
+    private final String GAME_ID_QUERY="SELECT * FROM games WHERE id=?";
     public GameDAO(){}
     
     public ArrayList<Game> getGames(){
@@ -43,5 +43,27 @@ public class GameDAO {
                     e.printStackTrace();
                     System.out.println("SQL Error");}
         return gameList;
+    }
+    public Game getGameWithId(int id){
+        Game game = null;
+        try (Connection connection = DriverManager.getConnection(ConnectionGet.URL, ConnectionGet.USER, ConnectionGet.PWD);
+                        PreparedStatement ps = connection.prepareStatement(GAME_ID_QUERY)) {
+            ps.setString(1, String.valueOf(id));
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                game = new Game(
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("genre"),
+                rs.getInt("id_pegi"),
+                rs.getDate("release_date"),
+                rs.getInt("multiplayer"),
+                rs.getString("img")
+                );
+            }
+        }catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("SQL Error");}
+        return game;
     }
 }

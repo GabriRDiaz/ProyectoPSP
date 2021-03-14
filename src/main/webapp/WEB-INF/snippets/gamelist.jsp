@@ -12,7 +12,11 @@
                 <c:if test="${empty games.getImg()}">
                 <img src="https://i.imgur.com/H3MdzT3.jpg" height="200" width="200"></img>
                 </c:if>
-                <button type="button" class="btn btn-dark marginButton">${games.getTitle()}</button>
+                <!--<button type="button" class="btn btn-dark marginButton">${games.getTitle()}</button>-->
+                <a href="${pageContext.request.contextPath}/GamesController?action=view&gameId=${games.getId()}"
+                class="btn btn-dark marginButton">
+                    ${games.getTitle()}  <i class="fas fa-ghost"></i>
+                </a>
                 <a href="${pageContext.request.contextPath}/GamesController?action=edit&id=${games.getId()}"
                 class="btn btn-dark marginButton">
                     Edit  <i class="far fa-edit"></i>
