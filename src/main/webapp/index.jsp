@@ -45,14 +45,15 @@
                     </form>
                         <c:choose>
                             <c:when test="${isIncorrect}">
-                            <div class="alert alert-dark" role="alert" name="incorrect" style= "display: flex;">
+                            <div class="alert alert-dark" role="alert" name="incorrect" style= "display: flex">
                                 User or password incorrect!
                             </div>
                             </c:when>
-                            <c:when test="${!isIncorrect}">
+                            <c:when test="${not isIncorrect}">
+                                <div class="alert alert-dark" role="alert" name="incorrect" style="display:none">
+                                User or password incorrect!
+                                </div>
                             </c:when>
-                            <c:otherwise>
-                            </c:otherwise>
                     </c:choose>
                 </div>
                 <div class="card-footer">

@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./games.css">
+    <script src="https://kit.fontawesome.com/7d83f7c8f5.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-secondary">
 
     <div class="centeredTitle bg-dark">
-        <h1>Games List</h1>
+        <h1><i class="fas fa-gamepad"></i>  Games List  <i class="fas fa-gamepad"></i></h1>
     </div>
     <jsp:include page="WEB-INF/snippets/gamelist.jsp"></jsp:include>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

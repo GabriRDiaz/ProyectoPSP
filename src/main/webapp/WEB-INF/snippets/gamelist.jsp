@@ -10,10 +10,13 @@
                 <img src="${games.getImg()}" height="200" width="200"></img>
                 </c:if>
                 <c:if test="${empty games.getImg()}">
-                <img src="https://i.imgur.com/eUfgE5Z.jpg" height="200" width="200"></img>
+                <img src="https://i.imgur.com/H3MdzT3.jpg" height="200" width="200"></img>
                 </c:if>
                 <button type="button" class="btn btn-dark marginButton">${games.getTitle()}</button>
-                <button type="button" class="btn btn-dark marginButton">Editar</button>
+                <a href="${pageContext.request.contextPath}/GamesController?action=edit&id=${games.getId()}"
+                class="btn btn-dark marginButton">
+                    Edit  <i class="far fa-edit"></i>
+                </a>
             </span>
         </c:forEach>
 <!--    <div class="displayRow"><Button type="button" class="btn btn-warning marginButton"
