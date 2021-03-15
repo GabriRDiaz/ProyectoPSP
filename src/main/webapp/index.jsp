@@ -25,12 +25,12 @@
                     <h3>Sign In</h3>
                 </div>
                 <div class="card-body">
-                    <form action="<%=request.getContextPath()%>/LoginController" method="POST">
+                    <form action="<%=request.getContextPath()%>/LoginController" method="POST" class="was-validated">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text dark"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Mail" name="mail" value="admin@mail.com" required>
+                            <input type="email" class="form-control" placeholder="Mail" name="mail" value="admin@mail.com" required>
 
                         </div>
                         <div class="input-group form-group">

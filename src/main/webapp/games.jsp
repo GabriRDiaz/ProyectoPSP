@@ -15,7 +15,38 @@
 <body class="bg-secondary">
 
     <div class="centeredTitle bg-dark">
-        <h1><i class="fas fa-gamepad"></i>  Games List  <i class="fas fa-gamepad"></i></h1>
+        <div class="col-md-4">
+        <h1><i class="fas fa-gamepad"></i> Games List <i class="fas fa-gamepad"></i></h1>
+        
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addGames">
+  Add Game<i class="fas fa-plus"></i>
+</button>
+
+<div class="modal fade" id="addGames" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--        <a href="#" class="btn btn-dark btn-block"
+        data-toggle="modal" data-target="#addGame">
+        
+        </a>-->
+        <br/>
+        </div>
     </div>
     <jsp:include page="WEB-INF/snippets/gamelist.jsp"></jsp:include>
     

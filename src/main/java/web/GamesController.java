@@ -50,6 +50,8 @@ public class GamesController extends HttpServlet {
                     loadGameInfo(request, response);
                     System.out.println("View");
                     break;
+                case "add":
+                    System.out.println("Add game");
                 default: 
                     loadMainScreen(request, response);
                     System.out.println("Working");
