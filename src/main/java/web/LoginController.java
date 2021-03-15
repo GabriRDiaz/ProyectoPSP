@@ -66,8 +66,9 @@ public class LoginController extends HttpServlet {
 //                response.sendRedirect("loginsuccess.jsp");
                 System.out.println("Entra 5");
                 request.setAttribute("isIncorrect", false);
-//                request.getRequestDispatcher("./games.jsp").forward(request, response);
-                response.sendRedirect(request.getContextPath() + "/GamesController");
+//              request.getRequestDispatcher("./games.jsp").forward(request, response);
+//Funciona      response.sendRedirect(request.getContextPath() + "/GamesController");
+                request.getRequestDispatcher("./GamesController").forward(request,response);
         } else {
                 HttpSession session = request.getSession();
                 request.setAttribute("isIncorrect", true);

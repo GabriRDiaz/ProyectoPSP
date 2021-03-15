@@ -22,43 +22,31 @@
         <div class="d-flex justify-content-center h-100">
             <div class="card">
                 <div class="card-header">
-                    <h3>Sign In</h3>
+                    <h3>Sign Up</h3>
                 </div>
                 <div class="card-body">
-                    <form action="<%=request.getContextPath()%>/LoginController" method="POST">
+                    <form action="<%=request.getContextPath()%>/SignUpController" method="POST">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text dark"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Mail" name="mail" value="admin@mail.com" required>
+                            <input type="text" class="form-control" placeholder="Mail" name="mail" value="" required>
 
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend dark">
                                 <span class="input-group-text dark"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="Password" value="abc123." name="pwd" required>
+                            <input type="password" class="form-control" placeholder="Password" value="" name="pwd" required>
                         </div>
                         <div class="form-group text-center">
-                            <input type="submit" value="Login" class="btn btn-dark">
+                            <input type="submit" value="Register" class="btn btn-dark">
                         </div>
                     </form>
-                        <c:choose>
-                            <c:when test="${isIncorrect}">
-                            <div class="alert alert-dark" role="alert" name="incorrect" style= "display: flex">
-                                User or password incorrect!
-                            </div>
-                            </c:when>
-                            <c:when test="${not isIncorrect}">
-                                <div class="alert alert-dark" role="alert" name="incorrect" style="display:none">
-                                User or password incorrect!
-                                </div>
-                            </c:when>
-                    </c:choose>
                 <div class="card-footer">
-                    <div class="d-flex justify-content-center links">
-                        <form action="<%=request.getContextPath()%>/SignUpController"" method="GET">
-                            <button class="btn btn-dark">Sign Up</button>
+                    <div class="d-flex justify-content-center links" method="POST">
+                        <form action="<%=request.getContextPath()%>/LoginController"" method="POST">
+                            <button class="btn btn-dark">Sign In</button>
                         </form>
                     </div>
                 </div>
