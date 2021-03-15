@@ -27,3 +27,11 @@
     margin-top: 8px;
     margin-bottom: 8px;
   }
+  
+.thumbnail:active {
+    position:relative;
+    width:350px;
+    height:auto;
+    display:block;
+    z-index:999;
+}

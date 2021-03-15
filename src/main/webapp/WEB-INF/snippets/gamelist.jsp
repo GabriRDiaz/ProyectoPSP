@@ -7,7 +7,7 @@
         <c:forEach var="games" items="${games}" varStatus="status"> 
             <span class="alignedItems">
                 <c:if test="${not empty games.getImg()}">
-                <img src="${games.getImg()}" height="200" width="200"></img>
+                <img src="${games.getImg()}" height="200" width="200" class="thumbnail"></img>
                 </c:if>
                 <c:if test="${empty games.getImg()}">
                 <img src="https://i.imgur.com/H3MdzT3.jpg" height="200" width="200"></img>
