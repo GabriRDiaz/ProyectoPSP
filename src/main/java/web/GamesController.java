@@ -37,9 +37,10 @@ public class GamesController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String accion = request.getParameter("action");
-	if(accion != null){    
-            switch(accion){
+        String action = request.getParameter("action");
+        System.out.println(action);
+	if(action != null){    
+            switch(action){
 		case "edit":
                     System.out.println("Editar");
 		    break;
@@ -52,7 +53,8 @@ public class GamesController extends HttpServlet {
                     break;
                 case "add":
                     System.out.println("Add game");
-                default: 
+                    break; 
+               default: 
                     loadMainScreen(request, response);
                     System.out.println("Working");
 	    }			
@@ -93,7 +95,33 @@ public class GamesController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        loadMainScreen(request, response);
+         String action = request.getParameter("action");
+        System.out.println(action);
+	if(action != null){    
+            switch(action){
+		case "edit":
+                    System.out.println("Editar");
+		    break;
+                case "delete":
+                    System.out.println("Borrar");                    
+		    break;
+                case "view":
+                    loadGameInfo(request, response);
+                    System.out.println("View");
+                    break;
+                case "add":
+                    System.out.println("Add game");
+                    loadMainScreen(request, response);
+                    break; 
+               default: 
+                    loadMainScreen(request, response);
+                    System.out.println("Working");
+	    }			
+        }else{
+            loadMainScreen(request,response);
+            System.out.println("Working");
+//          this.accionDefault(request,response);
+        }
     }
 
     /**

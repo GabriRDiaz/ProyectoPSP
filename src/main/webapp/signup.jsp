@@ -44,7 +44,7 @@
                         </div>
                     </form>
                 <div class="card-footer">
-                    <div class="d-flex justify-content-center links" method="POST">
+                    <div class="d-flex justify-content-center links"><!--method="POST"-->
                         <form action="<%=request.getContextPath()%>/LoginController"" method="POST">
                             <button class="btn btn-dark">Sign In</button>
                         </form>

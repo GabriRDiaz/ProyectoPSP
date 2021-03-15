@@ -19,24 +19,55 @@
         <h1><i class="fas fa-gamepad"></i> Games List <i class="fas fa-gamepad"></i></h1>
         
 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addGames">
-  Add Game<i class="fas fa-plus"></i>
+  Add Game <i class="fas fa-plus"></i>
 </button>
-
+<br/>
 <div class="modal fade" id="addGames" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+    <div class="modal-content bg-dark">
+      <div class="modal-header bg-dark">
+        <h4 class="modal-title">Add Game</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
+        <form class="was-validated" action="${pageContext.request.contextPath}/GamesController?action=add" method="POST">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="genre">Genre</label>
+                            <input type="text" class="form-control" name="genre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Release Date</label>
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="pegi">Select PEGI</label>
+                          <select class="form-control" id="pegi">
+                            <option>PEGI-3</option>
+                            <option>PEGI-7</option>
+                            <option>PEGI-12</option>
+                            <option>PEGI-16</option>
+                            <option>PEGI-18</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="url">Image URL</label>
+                            <input type="url" class="form-control" name="url">
+                        </div>
+                        <div class="form-group form-check">
+                             <input type="checkbox" class="form-check-input" name="multiplayer">
+                             <label for="multiplayer">Multiplayer</label>
+                        </div>
+        <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-secondary">Save changes</button>
+      </div>
+            </form>
       </div>
     </div>
   </div>
