@@ -91,12 +91,11 @@ public class LoginDAO {
     }
 
     private boolean validateForm() throws ClassNotFoundException {
-        if(!login.getMail().contains("@") && !login.getPwd().equals("") || login.getPwd()!=null){
+        if(login.getMail().contains("@") && !login.getPwd().equals("") || login.getPwd()!=null){
             if(checkIfExists()){
                 System.out.println("That mail is already in use!");
                 return false;}
-            System.out.println("Invalid registry data!");
-            return false;
-        }else{return true;}
+            return true;
+        }else{return false;}
     }
 }
