@@ -17,7 +17,7 @@
                 class="btn btn-dark marginButton">
                     ${games.getTitle()}  <i class="fas fa-ghost"></i>
                 </a>
-                <a href="${pageContext.request.contextPath}/GamesController?action=edit&id=${games.getId()}"
+                <a href="${pageContext.request.contextPath}/GamesController?action=gotoEdit&gameId=${games.getId()}"
                 class="btn btn-dark marginButton">
                     Edit  <i class="far fa-edit"></i>
                 </a>

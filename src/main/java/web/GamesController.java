@@ -53,7 +53,7 @@ public class GamesController extends HttpServlet {
                     System.out.println("Borrar");                    
 		    break;
                 case "view":
-                    loadGameInfo(request, response);
+                    loadGameInfo(request, response,"/WEB-INF/snippets/viewGame.jsp");
                     System.out.println("View");
                     break;
                 case "add":
@@ -61,6 +61,9 @@ public class GamesController extends HttpServlet {
                     break; 
                 case "main":
                     loadMainScreen(request, response);
+                    break;
+                case "gotoEdit":
+                    loadGameInfo(request, response,"/WEB-INF/snippets/editDelete.jsp");
                     break;
                default: 
                     loadMainScreen(request, response);
@@ -80,17 +83,18 @@ public class GamesController extends HttpServlet {
         GameDAO gdao = new GameDAO();
         return gdao.getGameWithId(Integer.parseInt(request.getParameter("gameId")));
     }
-    private void loadGameInfo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+    private void loadGameInfo(HttpServletRequest request, HttpServletResponse response,String path) throws IOException, ServletException{
         System.out.println(getGameWithId(request,response).getTitle());
         Game info = getGameWithId(request,response);
         HttpSession session = request.getSession();
+        request.setAttribute("id",info.getId());
         request.setAttribute("title",info.getTitle());
         request.setAttribute("genre",info.getGenre());
         request.setAttribute("pegi",parsePegiView(info.getId_pegi()));
         request.setAttribute("release",info.getRelease_date());
         request.setAttribute("multiplayer",parseMultiplayerView(info.getMultiplayer()));
         request.setAttribute("img",info.getImg());
-        request.getRequestDispatcher("/WEB-INF/snippets/viewGame.jsp").forward(request, response);
+        request.getRequestDispatcher(path).forward(request, response);
     }
     
     private String parseMultiplayerView(int multiplayer){
@@ -153,7 +157,7 @@ public class GamesController extends HttpServlet {
                     System.out.println("Borrar");                    
 		    break;
                 case "view":
-                    loadGameInfo(request, response);
+                    loadGameInfo(request, response,"/WEB-INF/snippets/viewGame.jsp");
                     System.out.println("View");
                     break;
                 case "add":
