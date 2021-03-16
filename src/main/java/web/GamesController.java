@@ -8,6 +8,7 @@ package web;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import database.GameDAO;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -110,6 +111,7 @@ public class GamesController extends HttpServlet {
                     System.out.println("View");
                     break;
                 case "add":
+                    addGame(request, response);
                     System.out.println("Add game");
                     loadMainScreen(request, response);
                     break; 
@@ -133,6 +135,22 @@ public class GamesController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void addGame(HttpServletRequest request, HttpServletResponse response) {
+        String title = request.getParameter("title");
+        String genre = request.getParameter("genre");
+        String release = request.getParameter("release");
+        String img = request.getParameter("img");
+        String multiplayer = request.getParameter("multiplayer");
+        String id_pegi = request.getParameter("pegi");
+        System.err.println("Game info:");
+        System.out.println(title);
+        System.out.println(genre);
+        System.out.println(release);
+        System.out.println(img);
+        System.out.println(multiplayer); //on OR null
+        System.out.println(id_pegi);  //PEGI-X
+    }
 
 
 

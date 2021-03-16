@@ -42,12 +42,12 @@
                             <input type="text" class="form-control" name="genre" required>
                         </div>
                         <div class="form-group">
-                            <label for="date">Release Date</label>
-                            <input type="date" class="form-control" name="date" required>
+                            <label for="release">Release Date</label>
+                            <input type="date" class="form-control" name="release" required>
                         </div>
                         <div class="form-group">
                           <label for="pegi">Select PEGI</label>
-                          <select class="form-control" id="pegi">
+                          <select class="form-control" name="pegi">
                             <option>PEGI-3</option>
                             <option>PEGI-7</option>
                             <option>PEGI-12</option>
@@ -56,8 +56,8 @@
                           </select>
                         </div>
                         <div class="form-group">
-                            <label for="url">Image URL</label>
-                            <input type="url" class="form-control" name="url">
+                            <label for="img">Image URL</label>
+                            <input type="url" class="form-control" name="img">
                         </div>
                         <div class="form-group form-check">
                              <input type="checkbox" class="form-check-input" name="multiplayer">
