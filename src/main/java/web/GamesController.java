@@ -47,10 +47,12 @@ public class GamesController extends HttpServlet {
 	if(action != null){    
             switch(action){
 		case "edit":
-                    System.out.println("Editar");
+                    System.out.println("Edit: "+request.getParameter("gameId"));
 		    break;
                 case "delete":
-                    System.out.println("Borrar");                    
+                    System.out.println("Delete: "+request.getParameter("gameId"));
+                    deleteGameWithId(request,response);
+                    loadMainScreen(request, response);
 		    break;
                 case "view":
                     loadGameInfo(request, response,"/WEB-INF/snippets/viewGame.jsp");
@@ -74,6 +76,10 @@ public class GamesController extends HttpServlet {
             System.out.println("Working");
 //          this.accionDefault(request,response);
         }
+    }
+    private void deleteGameWithId(HttpServletRequest request, HttpServletResponse response){
+        GameDAO gdao = new GameDAO();
+        gdao.deleteGameId(Integer.parseInt(request.getParameter("gameId")));
     }
     private ArrayList<Game> getGames(){
        GameDAO gdao = new GameDAO();
@@ -154,7 +160,9 @@ public class GamesController extends HttpServlet {
                     System.out.println("Editar");
 		    break;
                 case "delete":
-                    System.out.println("Borrar");                    
+                    System.out.println("Delete: "+request.getParameter("gameId"));
+                    deleteGameWithId(request,response);
+                    loadMainScreen(request, response);
 		    break;
                 case "view":
                     loadGameInfo(request, response,"/WEB-INF/snippets/viewGame.jsp");

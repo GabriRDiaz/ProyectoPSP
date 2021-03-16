@@ -115,10 +115,10 @@
         <a href="${pageContext.request.contextPath}/GamesController?action=main"
         class="btn btn-dark marginButton">
         Close  <i class="fas fa-arrow-left"></i></a>
-        <a href="${pageContext.request.contextPath}/GamesController?action=gotoEdit"
+        <a href="${pageContext.request.contextPath}/GamesController?action=delete&gameId=<%=request.getAttribute("id")%>"
                 class="btn btn-danger marginButton">
          Delete  <i class="fas fa-trash-alt"></i></a>
-         <a href="${pageContext.request.contextPath}/GamesController?action=delete"
+         <a href="${pageContext.request.contextPath}/GamesController?action=edit&gameId=<%=request.getAttribute("id")%>"
                 class="btn btn-primary marginButton">
          Save  <i class="fas fa-cloud-upload-alt"></i></a>
      </div>

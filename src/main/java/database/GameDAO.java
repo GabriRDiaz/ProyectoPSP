@@ -22,6 +22,7 @@ public class GameDAO {
     private final String GAME_QUERY="SELECT * FROM games";
     private final String GAME_ID_QUERY="SELECT * FROM games WHERE id=?";
     private final String INSERT_GAME="INSERT INTO games(title,genre,release_date,img,id_pegi,multiplayer) VALUES(?,?,?,?,?,?)";
+    private final String DELETE_GAME="DELETE FROM games WHERE id=?";
     public GameDAO(){}
     
     public ArrayList<Game> getGames(){
@@ -79,6 +80,15 @@ public class GameDAO {
                                     ps.setInt(6, isMultiplayer);
                                     ps.executeUpdate();
                                     System.out.println(title+" added succesfully");
+		} catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("SQL Error");}
+    }
+    public void deleteGameId(Integer id){
+         try (Connection connection = DriverManager.getConnection(ConnectionGet.URL, ConnectionGet.USER, ConnectionGet.PWD);
+                        PreparedStatement ps = connection.prepareStatement(DELETE_GAME)) {
+                                    ps.setInt(1, id);
+                                    ps.executeUpdate();
 		} catch (SQLException e) {
                     e.printStackTrace();
                     System.out.println("SQL Error");}
