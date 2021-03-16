@@ -79,6 +79,15 @@ public class GamesController extends HttpServlet {
     }
     private void loadGameInfo(HttpServletRequest request, HttpServletResponse response){
         System.out.println(getGameWithId(request,response).getTitle());
+        Game info = getGameWithId(request,response);
+        HttpSession session = request.getSession();
+        session.setAttribute("title",info.getTitle());
+        session.setAttribute("genre",info.getGenre());
+        session.setAttribute("pegi",info.getId_pegi());
+        session.setAttribute("release",info.getRelease_date());
+        session.setAttribute("multiplayer",info.getMultiplayer());
+        session.setAttribute("img",info.getImg());
+//        response.sendRedirect("games.jsp");
     }
     private void loadMainScreen(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
