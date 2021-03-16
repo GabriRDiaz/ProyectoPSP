@@ -23,6 +23,7 @@ public class GameDAO {
     private final String GAME_ID_QUERY="SELECT * FROM games WHERE id=?";
     private final String INSERT_GAME="INSERT INTO games(title,genre,release_date,img,id_pegi,multiplayer) VALUES(?,?,?,?,?,?)";
     private final String DELETE_GAME="DELETE FROM games WHERE id=?";
+    private final String EDIT_GAME="UPDATE games SET title=?,genre=?,release_date=?,img=?,id_pegi=?,multiplayer=? WHERE id=?";
     public GameDAO(){}
     
     public ArrayList<Game> getGames(){
@@ -88,6 +89,21 @@ public class GameDAO {
          try (Connection connection = DriverManager.getConnection(ConnectionGet.URL, ConnectionGet.USER, ConnectionGet.PWD);
                         PreparedStatement ps = connection.prepareStatement(DELETE_GAME)) {
                                     ps.setInt(1, id);
+                                    ps.executeUpdate();
+		} catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("SQL Error");}
+    }
+        public void editGameId(Integer id,String title, String genre, java.sql.Date release, String img, int isMultiplayer, int id_pegi){
+         try (Connection connection = DriverManager.getConnection(ConnectionGet.URL, ConnectionGet.USER, ConnectionGet.PWD);
+                        PreparedStatement ps = connection.prepareStatement(EDIT_GAME)) {
+                                    ps.setString(1, title);
+                                    ps.setString(2, genre);
+                                    ps.setDate(3,release);
+                                    ps.setString(4,img);
+                                    ps.setInt(5, id_pegi);
+                                    ps.setInt(6, isMultiplayer);
+                                    ps.setInt(7, id);
                                     ps.executeUpdate();
 		} catch (SQLException e) {
                     e.printStackTrace();

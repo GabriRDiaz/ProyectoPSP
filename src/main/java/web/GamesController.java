@@ -41,13 +41,17 @@ public class GamesController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException  {
         String action = request.getParameter("action");
         System.out.println(action);
 	if(action != null){    
             switch(action){
 		case "edit":
                     System.out.println("Edit: "+request.getParameter("gameId"));
+                    try{
+                    editGameWithId(request, response);
+                    loadMainScreen(request, response);
+                    }catch(Exception e){e.printStackTrace();}
 		    break;
                 case "delete":
                     System.out.println("Delete: "+request.getParameter("gameId"));
@@ -76,6 +80,22 @@ public class GamesController extends HttpServlet {
             System.out.println("Working");
 //          this.accionDefault(request,response);
         }
+    }
+    private void editGameWithId(HttpServletRequest request, HttpServletResponse response)throws ParseException{
+        GameDAO gdao = new GameDAO();
+        String title = request.getParameter("title");
+        String genre = request.getParameter("genre");
+        String releaseStr = request.getParameter("release");
+        String img = request.getParameter("img");
+        String multiplayer = request.getParameter("multiplayer");
+        String pegi = request.getParameter("pegi");
+        System.out.println("Title: "+title);
+        System.out.println("PEGI: "+pegi);
+        int isMultiplayer = parseMultiplayer(multiplayer); //Gets "on" OR null
+        int id_pegi = parsePegi(pegi); //Gets PEGI-X
+        java.sql.Date release = parseDateCustom(releaseStr); //Gets yyyy-mm-dd
+        
+        gdao.editGameId(Integer.parseInt(request.getParameter("gameId")),title,genre,release,img,isMultiplayer,id_pegi);
     }
     private void deleteGameWithId(HttpServletRequest request, HttpServletResponse response){
         GameDAO gdao = new GameDAO();
@@ -150,14 +170,17 @@ public class GamesController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
          String action = request.getParameter("action");
-        System.out.println(action);
+        System.out.println("Action: "+action);
 	if(action != null){    
             switch(action){
 		case "edit":
                     System.out.println("Editar");
+                    try{
+                        editGameWithId(request, response);
+                        loadMainScreen(request, response);
+                    }catch(Exception e){e.printStackTrace();}
 		    break;
                 case "delete":
                     System.out.println("Delete: "+request.getParameter("gameId"));

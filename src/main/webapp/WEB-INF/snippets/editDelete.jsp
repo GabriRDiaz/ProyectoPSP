@@ -62,18 +62,18 @@
                     </form>
                  </td>
                  <td colspan="1">
-                    <form class="well form-horizontal">
+                    <form class="well form-horizontal was-validated" action="${pageContext.request.contextPath}/GamesController?action=edit&gameId=<%=request.getAttribute("id")%>" method="POST">
                         <fieldset>
                            <div class="form-group">
                               <label class="col-md-4 control-label">New Title</label>
                               <div class="col-md-8 inputGroupContainer">
-                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input name="title"  class="form-control" placeholder="Golden Sun" type="text"></div>
+                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input name="title"  class="form-control" placeholder="Golden Sun" type="text" required></div>
                               </div>
                            </div>
                            <div class="form-group">
                               <label class="col-md-4 control-label">New Genre</label>
                               <div class="col-md-8 inputGroupContainer">
-                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input name="genre"  class="form-control" placeholder="RPG" type="text"></div>
+                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input name="genre"  class="form-control" placeholder="RPG" type="text" required></div>
                               </div>
                            </div>
                            <div class="form-group">
@@ -105,6 +105,7 @@
                             <input type="checkbox" class="form-check-input" name="multiplayer">
                            </div>
                         </fieldset>
+                        <button type="submit" class="btn btn-secondary">Save <i class="fas fa-cloud-upload-alt"></i></button>
                      </form>
                  </td>
               </tr>
@@ -118,9 +119,6 @@
         <a href="${pageContext.request.contextPath}/GamesController?action=delete&gameId=<%=request.getAttribute("id")%>"
                 class="btn btn-danger marginButton">
          Delete  <i class="fas fa-trash-alt"></i></a>
-         <a href="${pageContext.request.contextPath}/GamesController?action=edit&gameId=<%=request.getAttribute("id")%>"
-                class="btn btn-primary marginButton">
-         Save  <i class="fas fa-cloud-upload-alt"></i></a>
      </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
