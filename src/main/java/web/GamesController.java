@@ -77,18 +77,48 @@ public class GamesController extends HttpServlet {
         GameDAO gdao = new GameDAO();
         return gdao.getGameWithId(Integer.parseInt(request.getParameter("gameId")));
     }
-    private void loadGameInfo(HttpServletRequest request, HttpServletResponse response){
+    private void loadGameInfo(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         System.out.println(getGameWithId(request,response).getTitle());
         Game info = getGameWithId(request,response);
         HttpSession session = request.getSession();
-        session.setAttribute("title",info.getTitle());
-        session.setAttribute("genre",info.getGenre());
-        session.setAttribute("pegi",info.getId_pegi());
-        session.setAttribute("release",info.getRelease_date());
-        session.setAttribute("multiplayer",info.getMultiplayer());
-        session.setAttribute("img",info.getImg());
-//        response.sendRedirect("games.jsp");
+        request.setAttribute("title",info.getTitle());
+        request.setAttribute("genre",info.getGenre());
+        request.setAttribute("pegi",parsePegiView(info.getId_pegi()));
+        request.setAttribute("release",info.getRelease_date());
+        request.setAttribute("multiplayer",parseMultiplayerView(info.getMultiplayer()));
+        request.setAttribute("img",info.getImg());
+        request.getRequestDispatcher("/WEB-INF/snippets/viewGame.jsp").forward(request, response);
     }
+    
+    private String parseMultiplayerView(int multiplayer){
+        if(multiplayer==1){
+            return "Yes";
+        }else{
+            return "No";
+        }
+    }
+     private String parsePegiView(int pegi){
+      String value="PEGI-3";
+         switch(pegi){
+            case 1:
+                value="PEGI-3";
+                break;
+            case 2:
+               value="PEGI-7";
+                break;
+            case 3:
+               value="PEGI-12";
+                break;
+            case 4:
+                value="PEGI-16";
+                break;
+            case 5:
+                value="PEGI-18";
+                break;
+        }
+         return value;
+     }
+     
     private void loadMainScreen(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         getGames().forEach(g->{
