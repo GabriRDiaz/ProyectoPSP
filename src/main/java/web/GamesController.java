@@ -9,7 +9,11 @@ import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import database.GameDAO;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -111,10 +115,15 @@ public class GamesController extends HttpServlet {
                     System.out.println("View");
                     break;
                 case "add":
-                    addGame(request, response);
+                    try {
+                        addGame(request, response);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(GamesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     System.out.println("Add game");
                     loadMainScreen(request, response);
                     break; 
+ 
                default: 
                     loadMainScreen(request, response);
                     System.out.println("Working");
@@ -136,21 +145,73 @@ public class GamesController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void addGame(HttpServletRequest request, HttpServletResponse response) {
+    private void addGame(HttpServletRequest request, HttpServletResponse response) throws ParseException {
         String title = request.getParameter("title");
         String genre = request.getParameter("genre");
-        String release = request.getParameter("release");
+        String releaseStr = request.getParameter("release");
         String img = request.getParameter("img");
         String multiplayer = request.getParameter("multiplayer");
-        String id_pegi = request.getParameter("pegi");
+        String pegi = request.getParameter("pegi");
+        int isMultiplayer = parseMultiplayer(multiplayer); //Gets "on" OR null
+        int id_pegi = parsePegi(pegi); //Gets PEGI-X
+        java.sql.Date release = parseDateCustom(releaseStr); //Gets yyyy-mm-dd
+        
         System.err.println("Game info:");
         System.out.println(title);
         System.out.println(genre);
         System.out.println(release);
         System.out.println(img);
-        System.out.println(multiplayer); //on OR null
+        System.out.println(isMultiplayer); //on OR null
         System.out.println(id_pegi);  //PEGI-X
     }
+
+    private int parseMultiplayer(String multiplayer) {
+        System.out.println(multiplayer);
+        if(multiplayer == null || multiplayer.isEmpty()){
+            return 0;
+        }else if(multiplayer.equals("on")){
+            return 1;
+        }else{
+            return 0;
+        }
+//        if(multiplayer.equals("on")){
+//            return 1;
+//        }else if(multiplayer.isEmpty() || multiplayer == null){
+//            return 0;
+//        }else{
+//            return 0;
+//        }
+    }
+    private java.sql.Date parseDateCustom(String releaseStr) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date releaseDate = sdf.parse(releaseStr);
+        java.sql.Date sqlRelease = new java.sql.Date(releaseDate.getTime());
+        return sqlRelease;
+    }
+
+    private int parsePegi(String pegi) {
+        int value = 1;
+        switch(pegi){
+            case "PEGI-3":
+                value= 1;
+                break;
+            case "PEGI-7":
+                value= 2;
+                break;
+            case "PEGI-12":
+                value= 3;
+                break;
+            case "PEGI-16":
+                value= 4;
+                break;
+            case "PEGI-18":
+                value= 5;
+                break;
+        }
+        return value;
+    }
+
+
 
 
 

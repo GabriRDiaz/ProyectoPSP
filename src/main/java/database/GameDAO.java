@@ -21,6 +21,7 @@ import pojo.Game;
 public class GameDAO {
     private final String GAME_QUERY="SELECT * FROM games";
     private final String GAME_ID_QUERY="SELECT * FROM games WHERE id=?";
+    private final String INSERT_GAME="INSERT INTO games(title,genre,release_date,img,id_pegi,multiplayer) VALUES(?,?,?,?,?,?)";
     public GameDAO(){}
     
     public ArrayList<Game> getGames(){
@@ -66,4 +67,6 @@ public class GameDAO {
                     System.out.println("SQL Error");}
         return game;
     }
+    
+
 }
