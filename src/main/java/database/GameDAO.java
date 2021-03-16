@@ -68,5 +68,19 @@ public class GameDAO {
         return game;
     }
     
-
+    public void addGame(String title, String genre, java.sql.Date release, String img, int isMultiplayer, int id_pegi ){
+        try (Connection connection = DriverManager.getConnection(ConnectionGet.URL, ConnectionGet.USER, ConnectionGet.PWD);
+                        PreparedStatement ps = connection.prepareStatement(INSERT_GAME)) {
+                                    ps.setString(1, title);
+                                    ps.setString(2, genre);
+                                    ps.setDate(3,release);
+                                    ps.setString(4,img);
+                                    ps.setInt(5, id_pegi);
+                                    ps.setInt(6, isMultiplayer);
+                                    ps.executeUpdate();
+                                    System.out.println(title+" added succesfully");
+		} catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("SQL Error");}
+    }
 }

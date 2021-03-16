@@ -156,6 +156,9 @@ public class GamesController extends HttpServlet {
         int id_pegi = parsePegi(pegi); //Gets PEGI-X
         java.sql.Date release = parseDateCustom(releaseStr); //Gets yyyy-mm-dd
         
+        GameDAO gDAO = new GameDAO();
+        gDAO.addGame(title, genre, release, img, isMultiplayer, id_pegi);
+        
         System.err.println("Game info:");
         System.out.println(title);
         System.out.println(genre);
@@ -163,6 +166,8 @@ public class GamesController extends HttpServlet {
         System.out.println(img);
         System.out.println(isMultiplayer); //on OR null
         System.out.println(id_pegi);  //PEGI-X
+        
+        
     }
 
     private int parseMultiplayer(String multiplayer) {
